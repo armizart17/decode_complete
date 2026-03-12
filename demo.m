@@ -10,9 +10,9 @@ load('sample_data.mat');
 rf_fsa=decode_focused_beams(rf,transmit_delays);
 
 % Perform a basic diverging wave focusing of the complete data set
-x=linspace(-15,15,200)/1000;
-z=linspace(15,60,500)/1000;
-r=(params.t0+(0:size(rf_fsa,1)-1))/params.fs*params.c;
+x=linspace(-15,15,200)/1000; % [m]
+z=linspace(15,60,500)/1000; % [m]
+r=(params.t0+(0:size(rf_fsa,1)-1))/params.fs*params.c; % [m] = c . tn
 rf_focused=beamform(rf_fsa,r,params.rx_pos,x,z);
 
 % Apply a high-pass filter to the data to remove interpolation artifacts
@@ -30,3 +30,5 @@ title('Recovered complete data set')
 % Load the saved figures
 % openfig('dynamic_receive.fig')
 % openfig('recovered_complete.fig')
+
+% s**-1 / m*s^-1
